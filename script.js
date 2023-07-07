@@ -1,9 +1,9 @@
 window.onload = function(){
 
-    var tela = document.getElementById('tela');
-    var conteudo = tela.getContext('2d');
-
-    setinterval(game(), 1000/60);
+    var stage = document.getElementById('stage');
+    var ctx = stage.getContext('2d');
+    document.addEventListener("keydown",keypush)
+    setInterval(game, 40);
 
     const vel = 1;
 
@@ -11,13 +11,13 @@ window.onload = function(){
     var vy = 0;
 
     var px = 10;
-    var py = 10;
+    var py = 15;
 
-    var tamQ = 20;
-    var QQ = 20;
+    var lp = 20;
+    var qp = 20;
 
-    var applex = 15
-    var appley = 15
+    var ax = 15
+    var ay = 15
 
     var trail = []
     var tail = 5
@@ -28,19 +28,19 @@ window.onload = function(){
 
         if(px < 0)
         {
-            px = qp -1
+            px = lp -1
         }
-        if (px > qp -1)
+        if (px > lp -1)
         {
             px = 0
         }
 
         if(py < 0) 
         {
-            py = qp -1
+            py = lp -1
         }
 
-        if (py > qp -1)
+        if (py > lp -1)
         {
             py = 0
         }
@@ -54,37 +54,69 @@ window.onload = function(){
 
 
 
-    conteudo.fillStyle = 'black';
-    conteudo.fillRect(0,0,tela.width,tela.height);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,stage.width,stage.height);
 
-    conteudo.fillStyle = 'red';
-    conteudo.fillRect = (applex*tamQ,appley*tamQ,tamQ,tamQ)
+    ctx.fillStyle = 'red';
+    ctx.fillRect(ax*lp,ay*lp,lp,lp)
 
-    conteudo.fillStyle = 'green';
+    ctx.fillStyle = 'green';
     for(let i =0;i < trail.length;i++)
     {
-        conteudo.fillRect = (
-                            trail[i].x * tamQ,
-                            trail[i].y * tamQ,
-                            tamQ,
-                            tamQ
-                            )
+        ctx.fillRect(
+                            trail[i].x * lp,
+                            trail[i].y * lp,
+                            lp,
+                            lp
+                          )
 
-        if(trail[i].x == p && trail[i].y == pp) 
+        if(trail[i].x == px && trail[i].y == py) 
         {
             vx = 0
             vy = 0
+            tail = 5
         }
     
     }
     trail.push({x:px,y:py})
     while (trail.length > tail)
     {
-        trail.shift
+        trail.shift();
+    }
+
+    if (ax === px && ay === py)
+    {
+        tail++;
+        ax = Math.floor(Math.random()*qp)
+        ay = Math.floor(Math.random()*qp)
+    }
+    }
+
+    function keypush(event)
+    {
+        switch(event.keyCode){
+            case 37: vx = -vel; vy = 0; break; //left
+            
+            case 38: vx = 0; vy = -vel; break; //up
+            
+            case 39: vx = vel; vy = 0; break; //right
+            
+            case 40: vx = 0; vy = vel; break; //down
+
+            default:break;
+        }
     }
 
 
-    }
+
+
+
+
+
+
+
+
+
 
 
 
