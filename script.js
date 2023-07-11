@@ -1,9 +1,21 @@
 window.onload = function(){
 
+    cima = document.querySelector('#cima')
+    baixo = document.querySelector('#baixo')
+    direita = document.querySelector('#direita')
+    esquerda = document.querySelector('#esquerda')
+
+
+
     var stage = document.getElementById('stage');
     var ctx = stage.getContext('2d');
     document.addEventListener("keydown",keypush)
-    setInterval(game, 40);
+    cima.addEventListener('click',cimaf)
+    baixo.addEventListener('click',baixof)
+    direita.addEventListener('click',direitaf)
+    esquerda.addEventListener('click',esquerdaf)
+    
+    setInterval(game, 80);
 
     const vel = 1;
 
@@ -21,6 +33,8 @@ window.onload = function(){
 
     var trail = []
     var tail = 5
+
+
 
     function game() {
         px += vx
@@ -106,22 +120,19 @@ window.onload = function(){
             default:break;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    function cimaf(){
+        vx = 0; vy = -vel;
+    }
+    function baixof(){
+        vx = 0; vy = vel;
+    }
+    function direitaf(){
+        vx = vel; vy = 0; 
+    }
+    function esquerdaf(){
+        vx = -vel; vy = 0;
+    }
 
 
 

@@ -1,4 +1,4 @@
-*{
+ *{
     margin: 0;
     padding: 0;
 }
@@ -7,6 +7,60 @@
 .tela{
     width: 400px;
     height: 400px;
-    background-color: red;
-    margin: 30px,auto,auto,auto;
+    margin: auto;
+    margin-top: 40px;
 }
+
+.button{
+    display: none;
+}
+
+@media (max-width:600px) {
+    .buttons{
+        display: grid;
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        margin-top: 50px;
+        grid-template-columns:100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-areas: 
+        '. cima .'
+        'esquerda . direita'
+        '. baixo .'
+        ;
+
+    }
+    img{
+      width: 100px;
+      height:100px;
+    }
+    .button{
+        display: block;
+        border: 0px solid white;
+    }
+
+    #cima{
+      grid-area: cima;
+    }
+    #baixo{
+      grid-area: baixo;
+    }
+    #direita{
+      grid-area:direita
+    }
+    #esquerda{
+      grid-area:esquerda;
+    }
+
+ 
+
+
+
+
+
+
+
+
+} 
+
